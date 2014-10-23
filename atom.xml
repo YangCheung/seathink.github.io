@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Yang's Blog]]></title>
+  <link href="http://devyang.me/atom.xml" rel="self"/>
+  <link href="http://devyang.me/"/>
+  <updated>2014-10-23T13:49:47+08:00</updated>
+  <id>http://devyang.me/</id>
+  <author>
+    <name><![CDATA[Yang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>
