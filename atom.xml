@@ -4,7 +4,7 @@
   <title><![CDATA[Yang's Blog]]></title>
   <link href="http://devyang.me/atom.xml" rel="self"/>
   <link href="http://devyang.me/"/>
-  <updated>2014-10-23T14:17:29+08:00</updated>
+  <updated>2014-11-03T19:58:25+08:00</updated>
   <id>http://devyang.me/</id>
   <author>
     <name><![CDATA[Yang]]></name>
@@ -12,6 +12,100 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Android Gradle 多渠道打包配置]]></title>
+    <link href="http://devyang.me/blog/2014/11/03/android-gradle-duo-qu-dao-da-bao-pei-zhi/"/>
+    <updated>2014-11-03T19:56:56+08:00</updated>
+    <id>http://devyang.me/blog/2014/11/03/android-gradle-duo-qu-dao-da-bao-pei-zhi</id>
+    <content type="html"><![CDATA[<h2>需求来源</h2>
+
+<p><br/></p>
+
+<p>国内Android app发布一般会有多个渠道，为了跟踪发展情况，通常会为每一个渠道定制一个特别的apk。</p>
+
+<p>一般友盟之类第三方统计的渠道ID定义如下，以wandoujia为例</p>
+
+<pre><code>      &lt;meta-data android:name="UMENG_CHANNEL" android:value="wandoujia" /&gt;
+</code></pre>
+
+<p>如果不使用第三方统计，自己也可以在AndroidManifest.xml中定义类似meta-data</p>
+
+<p>I</p>
+
+<p>如果每个渠道都手工修改，打包，10几个渠道下来😂</p>
+
+<p>咱还是自动化来得方便</p>
+
+<p><br/><br/></p>
+
+<h2>解决方案</h2>
+
+<p><br/></p>
+
+<p>Gradle Android Plugin 0.10 新增了<a href="http://tools.android.com/tech-docs/new-build-system/user-guide/manifest-merger">Manifest Merger</a></p>
+
+<blockquote><p>For custom placeholders replacements, use the following DSL to configure the placeholders values :</p></blockquote>
+
+<pre><code>android {
+
+    defaultConfig { 
+
+        manifestPlaceholders = [ activityLabel:"defaultName"] 
+
+    } 
+
+    productFlavors {
+
+        free { 
+        } 
+
+        pro { manifestPlaceholders = [ activityLabel:"proName" ] 
+
+        } 
+    }
+} 
+</code></pre>
+
+<p>Manifest Merger 可以替换Manifest中对应key的值</p>
+
+<p>所以，可以利用Product flavor + manifestPlaceholder 来替换对应渠道的key</p>
+
+<p><br/></p>
+
+<p>假如我们有wandoujia， Google Play， 两个渠道，可以这么写</p>
+
+<p>AndroidManifest.xml</p>
+
+<pre><code>        &lt;meta-data android:name="UMENG_CHANNEL" android:value="$[CHANNEL_KET]" /&gt;
+</code></pre>
+
+<p>build.gradle</p>
+
+<pre><code>        productFlavors {
+            wandoujia{
+                manifestPlaceholders = [ UMENG_CHANNEL_VALUE:name]
+            }
+            google_play{
+                manifestPlaceholders = [ UMENG_CHANNEL_VALUE:name]
+            }
+        }
+</code></pre>
+
+<p>ok, 搞定，几行代码自动生成对应渠道的apk。 其实是将Manifest中的
+UMENG_CHANNEL_VALUE替换成了flavorbuild的name
+<br/></p>
+
+<p>每个flavor里面的内容一样，当然，还能在优化下，</p>
+
+<pre><code>        productFlavors.all { flavor -&gt;
+            flavor.manifestPlaceholders = [ UMENG_CHANNEL_VALUE:name ]
+        }
+</code></pre>
+
+<p>写个循环，替代手动打码~</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Test]]></title>
