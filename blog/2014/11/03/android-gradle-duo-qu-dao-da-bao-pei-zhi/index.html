@@ -86,8 +86,6 @@
 
 <div class="entry-content"><h2>需求来源</h2>
 
-<p><br/></p>
-
 <p>国内Android app发布一般会有多个渠道，为了跟踪发展情况，通常会为每一个渠道定制一个特别的apk。</p>
 
 <p>一般友盟之类第三方统计的渠道ID定义如下，以wandoujia为例</p>
@@ -97,17 +95,11 @@
 
 <p>如果不使用第三方统计，自己也可以在AndroidManifest.xml中定义类似meta-data</p>
 
-<p>I</p>
-
 <p>如果每个渠道都手工修改，打包，10几个渠道下来😂</p>
 
 <p>咱还是自动化来得方便</p>
 
-<p><br/><br/></p>
-
 <h2>解决方案</h2>
-
-<p><br/></p>
 
 <p>Gradle Android Plugin 0.10 新增了<a href="http://tools.android.com/tech-docs/new-build-system/user-guide/manifest-merger">Manifest Merger</a></p>
 
@@ -136,8 +128,6 @@
 <p>Manifest Merger 可以替换Manifest中对应key的值</p>
 
 <p>所以，可以利用Product flavor + manifestPlaceholder 来替换对应渠道的key</p>
-
-<p><br/></p>
 
 <p>假如我们有wandoujia， Google Play， 两个渠道，可以这么写</p>
 
