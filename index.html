@@ -9,7 +9,7 @@
   <meta name="author" content="Yang">
 
   
-  <meta name="description" content="需求来源 国内Android app发布一般会有多个渠道，为了跟踪发展情况，通常会为每一个渠道定制一个特别的apk。 一般友盟之类第三方统计的渠道ID定义如下，以wandoujia为例 &lt;meta-data android:name="UMENG_CHANNEL" android:value &hellip;">
+  <meta name="description" content="需求 国内Android app发布一般会有多个渠道，为了跟踪发展情况，通常会为每一个渠道定制一个特别的apk。 一般友盟之类第三方统计的渠道ID定义如下，以wandoujia为例 &lt;meta-data android:name="UMENG_CHANNEL" android:value=" &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,7 +85,7 @@
   </header>
 
 
-  <div class="entry-content"><h2>需求来源</h2>
+  <div class="entry-content"><h2>需求</h2>
 
 <p>国内Android app发布一般会有多个渠道，为了跟踪发展情况，通常会为每一个渠道定制一个特别的apk。</p>
 
@@ -153,14 +153,21 @@
 UMENG_CHANNEL_VALUE替换成了flavorbuild的name
 <br/></p>
 
-<p>每个flavor里面的内容一样，当然，还能在优化下，</p>
+<p>可以看到每个flavor里面的代码一样，比较啰嗦，还能在简化下，</p>
 
-<pre><code>        productFlavors.all { flavor -&gt;
+<pre><code>        productFlavors {
+            wandoujia{
+            }
+            google_play{
+            }
+        }
+
+        productFlavors.all { flavor -&gt;
             flavor.manifestPlaceholders = [ UMENG_CHANNEL_VALUE:name ]
         }
 </code></pre>
 
-<p>写个循环，替代手动打码~</p>
+<p>一个循环搞定~</p>
 </div>
   
   

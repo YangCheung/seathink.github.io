@@ -4,7 +4,7 @@
   <title><![CDATA[Yang's Blog]]></title>
   <link href="http://devyang.me/atom.xml" rel="self"/>
   <link href="http://devyang.me/"/>
-  <updated>2014-11-04T00:52:43+08:00</updated>
+  <updated>2014-11-04T00:56:56+08:00</updated>
   <id>http://devyang.me/</id>
   <author>
     <name><![CDATA[Yang]]></name>
@@ -18,7 +18,7 @@
     <link href="http://devyang.me/blog/2014/11/03/android-gradle-duo-qu-dao-da-bao-pei-zhi/"/>
     <updated>2014-11-03T19:56:56+08:00</updated>
     <id>http://devyang.me/blog/2014/11/03/android-gradle-duo-qu-dao-da-bao-pei-zhi</id>
-    <content type="html"><![CDATA[<h2>需求来源</h2>
+    <content type="html"><![CDATA[<h2>需求</h2>
 
 <p>国内Android app发布一般会有多个渠道，为了跟踪发展情况，通常会为每一个渠道定制一个特别的apk。</p>
 
@@ -86,14 +86,21 @@
 UMENG_CHANNEL_VALUE替换成了flavorbuild的name
 <br/></p>
 
-<p>每个flavor里面的内容一样，当然，还能在优化下，</p>
+<p>可以看到每个flavor里面的代码一样，比较啰嗦，还能在简化下，</p>
 
-<pre><code>        productFlavors.all { flavor -&gt;
+<pre><code>        productFlavors {
+            wandoujia{
+            }
+            google_play{
+            }
+        }
+
+        productFlavors.all { flavor -&gt;
             flavor.manifestPlaceholders = [ UMENG_CHANNEL_VALUE:name ]
         }
 </code></pre>
 
-<p>写个循环，替代手动打码~</p>
+<p>一个循环搞定~</p>
 ]]></content>
   </entry>
   
