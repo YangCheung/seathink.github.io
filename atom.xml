@@ -4,7 +4,7 @@
   <title><![CDATA[Yang's Blog]]></title>
   <link href="http://devyang.me/atom.xml" rel="self"/>
   <link href="http://devyang.me/"/>
-  <updated>2014-11-11T17:06:14+08:00</updated>
+  <updated>2014-11-11T17:12:29+08:00</updated>
   <id>http://devyang.me/</id>
   <author>
     <name><![CDATA[Yang]]></name>
@@ -47,10 +47,7 @@
 
 <p>不过，这个开关是默认关闭的。可以在build type使用 shrinkResources true 开启。 要注意，这个功能的使用依赖于code shrinking， 所以minifyEnabled也必须打开。</p>
 
-<p><br></p>
-
-<p><em>runProguard 更名为minifyEnabled</em>
-<br>
+<p><br>
 <br></p>
 
 <blockquote><ol>
