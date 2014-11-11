@@ -9,7 +9,8 @@
   <meta name="author" content="Yang">
 
   
-  <meta name="description" content="需求 国内Android app发布一般会有多个渠道，为了跟踪发展情况，通常会为每一个渠道定制一个特别的apk。 一般友盟之类第三方统计的渠道ID定义如下，以wandoujia为例 &lt;meta-data android:name="UMENG_CHANNEL" android:value=" &hellip;">
+  <meta name="description" content="前言 apk瘦身一般有两条线， 去除无用的代码，例如引用一个比较大的lib，只使用了其中很少的功能。其他无用的代码可以想办法去掉
+去除无用的资源文件，可能是第三方lib中的，也有可能是开发中引入了无用的资源 去除无用代码 当然是Proguard了！ gradle plug 0.14.0, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +76,108 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/11/li-yong-android-gradleshou-shen-apk/">利用Android Gradle瘦身apk</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-11T16:20:45+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:20 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>前言</h1>
+
+<p>apk瘦身一般有两条线，</p>
+
+<ol>
+<li>去除无用的代码，例如引用一个比较大的lib，只使用了其中很少的功能。其他无用的代码可以想办法去掉</li>
+<li>去除无用的资源文件，可能是第三方lib中的，也有可能是开发中引入了无用的资源</li>
+</ol>
+
+
+<p><br></p>
+
+<h2>去除无用代码</h2>
+
+<p>当然是Proguard了！
+<br></p>
+
+<p><strong>gradle plug 0.14.0,  runProguard 更名为minifyEnabled</strong>
+<br>
+<br></p>
+
+<h2>去除无用资源</h2>
+
+<p><a href="http://tools.android.com/tech-docs/new-build-system">Android Gradle plug</a>从0.14.0开始，支持自动去除没有使用的资源。</p>
+
+<p><br></p>
+
+<p>不过，这个开关是默认关闭的。可以在build type使用 shrinkResources true 开启。 要注意，这个功能的使用依赖于code shrinking， 所以minifyEnabled也必须打开。</p>
+
+<p><br></p>
+
+<p><em>runProguard 更名为minifyEnabled</em>
+<br>
+<br></p>
+
+<blockquote><ol>
+<li><p>Support for automatic removal of unused resources</p></li>
+<li><p>Off by default for now, enable by setting shrinkResources to true in your release build types. Requires minifyEnabled as well.
+<br>
+<br></p></li>
+</ol>
+</blockquote>
+
+<p>具体配置如下</p>
+
+<p><br></p>
+
+<pre><code>android {
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+        }
+    }
+}﻿
+</code></pre>
+
+<h2>效果</h2>
+
+<p>  以我正在开发的一个app为例
+<br></p>
+
+<ul>
+<li><p>使用前2.02MB</p></li>
+<li><p>使用后1.90MB</p></li>
+</ul>
+
+
+<p><br></p>
+
+<p>效果明显！</p>
+
+<p><br>
+<br></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -212,6 +315,10 @@ src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fa
 </section><section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/11/li-yong-android-gradleshou-shen-apk/">利用Android Gradle瘦身apk</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/11/03/android-gradle-duo-qu-dao-da-bao-pei-zhi/">Android Gradle 多渠道打包配置</a>

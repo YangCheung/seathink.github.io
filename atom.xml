@@ -4,7 +4,7 @@
   <title><![CDATA[Yang's Blog]]></title>
   <link href="http://devyang.me/atom.xml" rel="self"/>
   <link href="http://devyang.me/"/>
-  <updated>2014-11-10T15:08:40+08:00</updated>
+  <updated>2014-11-11T17:06:14+08:00</updated>
   <id>http://devyang.me/</id>
   <author>
     <name><![CDATA[Yang]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[利用Android Gradle瘦身apk]]></title>
+    <link href="http://devyang.me/blog/2014/11/11/li-yong-android-gradleshou-shen-apk/"/>
+    <updated>2014-11-11T16:20:45+08:00</updated>
+    <id>http://devyang.me/blog/2014/11/11/li-yong-android-gradleshou-shen-apk</id>
+    <content type="html"><![CDATA[<h1>前言</h1>
+
+<p>apk瘦身一般有两条线，</p>
+
+<ol>
+<li>去除无用的代码，例如引用一个比较大的lib，只使用了其中很少的功能。其他无用的代码可以想办法去掉</li>
+<li>去除无用的资源文件，可能是第三方lib中的，也有可能是开发中引入了无用的资源</li>
+</ol>
+
+
+<p><br></p>
+
+<h2>去除无用代码</h2>
+
+<p>当然是Proguard了！
+<br></p>
+
+<p><strong>gradle plug 0.14.0,  runProguard 更名为minifyEnabled</strong>
+<br>
+<br></p>
+
+<h2>去除无用资源</h2>
+
+<p><a href="http://tools.android.com/tech-docs/new-build-system">Android Gradle plug</a>从0.14.0开始，支持自动去除没有使用的资源。</p>
+
+<p><br></p>
+
+<p>不过，这个开关是默认关闭的。可以在build type使用 shrinkResources true 开启。 要注意，这个功能的使用依赖于code shrinking， 所以minifyEnabled也必须打开。</p>
+
+<p><br></p>
+
+<p><em>runProguard 更名为minifyEnabled</em>
+<br>
+<br></p>
+
+<blockquote><ol>
+<li><p>Support for automatic removal of unused resources</p></li>
+<li><p>Off by default for now, enable by setting shrinkResources to true in your release build types. Requires minifyEnabled as well.
+<br>
+<br></p></li>
+</ol>
+</blockquote>
+
+<p>具体配置如下</p>
+
+<p><br></p>
+
+<pre><code>android {
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+        }
+    }
+}﻿
+</code></pre>
+
+<h2>效果</h2>
+
+<p>  以我正在开发的一个app为例
+<br></p>
+
+<ul>
+<li><p>使用前2.02MB</p></li>
+<li><p>使用后1.90MB</p></li>
+</ul>
+
+
+<p><br></p>
+
+<p>效果明显！</p>
+
+<p><br>
+<br></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Android Gradle 多渠道打包配置]]></title>
