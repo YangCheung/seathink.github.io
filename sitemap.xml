@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://devyang.me/blog/2014/11/11/li-yong-android-gradleshou-shen-apk/</loc>
+    <loc>http://seathink.github.io/blog/2014/11/11/li-yong-android-gradleshou-shen-apk/</loc>
     <lastmod>2014-11-11T16:20:45+08:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://devyang.me/blog/2014/11/03/android-gradle-duo-qu-dao-da-bao-pei-zhi/</loc>
+    <loc>http://seathink.github.io/blog/2014/11/03/android-gradle-duo-qu-dao-da-bao-pei-zhi/</loc>
     <lastmod>2014-11-03T19:56:56+08:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://devyang.me/blog/archives/</loc>
-    <lastmod>2014-11-23T16:59:38+08:00</lastmod>
+    <loc>http://seathink.github.io/blog/archives/</loc>
+    <lastmod>2014-11-23T17:02:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://devyang.me/</loc>
-    <lastmod>2014-11-23T16:59:38+08:00</lastmod>
+    <loc>http://seathink.github.io/</loc>
+    <lastmod>2014-11-23T17:02:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
