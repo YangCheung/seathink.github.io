@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://seathink.github.io/sitemap.xml 
+Sitemap: http://devyang.com/sitemap.xml 
