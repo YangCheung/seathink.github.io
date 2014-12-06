@@ -4,7 +4,7 @@
   <title><![CDATA[Yang's Blog]]></title>
   <link href="http://devyang.com/atom.xml" rel="self"/>
   <link href="http://devyang.com/"/>
-  <updated>2014-12-07T00:56:28+08:00</updated>
+  <updated>2014-12-07T00:57:47+08:00</updated>
   <id>http://devyang.com/</id>
   <author>
     <name><![CDATA[Yang]]></name>
@@ -291,6 +291,9 @@ Fragment提供了一个接口 Fragment#setRetainInstance(true), 通过设置true
 <p>原本Activity的生命周期和后台任务的同步就比较难以处理，加上configChanges就更加复杂了
 <br>
 幸运的是，使用retained Fragment能够比较容易处理这种情况</p>
+
+<p><br><br>
+原文<a href="http://www.androiddesignpatterns.com/2013/04/retaining-objects-across-config-changes.html">http://www.androiddesignpatterns.com/2013/04/retaining-objects-across-config-changes.html</a></p>
 ]]></content>
   </entry>
   
