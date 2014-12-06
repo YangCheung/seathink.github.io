@@ -97,40 +97,47 @@
 
 <div class="entry-content"><p><a href="http://stackoverflow.com/questions/3821423/background-task-progress-dialog-orientation-change-is-there-any-100-working">StackOverflow</a> 有个问的比较多的问题.</p>
 
-<pre><code>What is the best way to retain active objects—such as running Threads, Sockets, and AsyncTasks—across device configuration changes?
-</code></pre>
+<blockquote><p>What is the best way to retain active objects—such as running Threads, Sockets, and AsyncTasks—across device configuration changes?</p></blockquote>
 
-<p>这个问题面临的难点主要在于Activity的生命周期和后台任务的同步。</p>
+<p><br></p>
 
-<h3>Configuration Changes &amp; Background Tasks</h3>
+<p>这个问题面临的难点主要在于Activity的生命周期和后台任务的同步。<br/>
+<br></p>
 
-<p>当Configuration发生变化时，activity会销毁重建，在多线程处理任务时，后台并没有停止，</p>
+<h2>Configuration Changes &amp; Background Tasks</h2>
 
-<p>举个例子，activity进来时开启了AsyncTask，用户稍后转动屏幕导致activity销毁重建。等到AsyncTask执行完毕，处理结果可能会错误提交到已被销毁的activity上。如果后台处理耗时比较久，后台线程持有销毁activity的实例，可能会发生内存泄露。</p>
+<p>当Configuration发生变化时，activity会销毁重建，在多线程处理任务时，后台并没有停止，<br/>
+<br>
+举个例子，activity进来时开启了AsyncTask，用户稍后转动屏幕导致activity销毁重建。等到AsyncTask执行完毕，处理结果可能会错误提交到已被销毁的activity上。如果后台处理耗时比较久，后台线程持有销毁activity的实例，可能会发生内存泄露。
+<br><br>
+与此同时，新建的Activity会启动新的后台线程，造成资源浪费。因此在configuration发生变化时，就算没有发生错误，想办法在新老activity之间复用活动的对象，也是必不可少的。
+<br><br>
+通常情况下，有两个解决办法
+<br><br></p>
 
-<p>与此同时，新建的Activity会启动新的后台线程，造成资源浪费。因此在configuration发生变化时，就算没有发生错误，想办法在新老activity之间复用活动的对象，也是必不可少的。</p>
+<h2>不推荐的方法: 保留Activity</h2>
 
-<p>通常情况下，有两个解决办法</p>
+<p>通常的解决方案是设置android:configChanges属性，避免activity的recreate现象。
+<br><br>
+但是Google的工程师不推荐这么使用。处理configChanges需要手动写代码设置不同的字符串、layout、drawable、dimesion等资源.
+<br>如果不小心处理，很容易发生一系列错误。
+<br><br>
+还有，很多开发者认为设置android:configChanges=&ldquo;orientation&#8221;这一个属性就能避免recreate，但实际上影响设备configChanges的属性不光屏幕方向，还有连接dock，切换语言等，太多了。每一个都会让当前的activity recreate. <br>因此，仅仅配置android:configChanges属性并不是一个可取的解决方案
+<br><br></p>
 
-<h3>不推荐的方法: 保留Activity</h3>
+<h2>推荐方案: 用Retained Fragment去管理对象</h2>
 
-<p>通常的解决方案是设置android:configChanges属性，避免activity的recreate现象。</p>
+<p>自从在Android 3.0引入Fragment，在Activity中管理活动对象的最佳方案就是维护一个retained Fragment. <br>实际的工作任务交给这个Fragment去做。
+<br><br>
+默认情况下，当configChanges时，Fragment会跟着父Activity销毁重建.
+<br><br>
+Fragment提供了一个接口 Fragment#setRetainInstance(true), 通过设置true，就能独立于Activity的生命周期。具体原理参考官方文档。
+<br><br>
+因此，我们就能在Fragment内部跑工作线程了~</p>
 
-<p>但是Google的工程师不推荐这么使用。处理configChanges需要手动写代码设置不同的字符串、layout、drawable、dimesion等资源. 如果不小心处理，很容易发生一系列错误。</p>
-
-<p>还有，很多开发者认为设置android:configChanges=&ldquo;orientation&#8221;这一个属性就能避免recreate，但实际上影响设备configChanges的属性不光屏幕方向，还有连接dock，切换语言等，太多了。每一个都会让当前的activity recreate. 因此，仅仅配置android:configChanges属性并不是一个可取的解决方案</p>
-
-<h3>推荐方案: 用Retained Fragment去管理对象</h3>
-
-<p>自从在Android 3.0引入Fragment，在Activity中管理活动对象的最佳方案就是用利用一个retained Fragment. 实际的工作任务交给这个Fragment去做。</p>
-
-<p>默认情况下，当configChanges时，Fragment会跟着父Activity销毁重建.</p>
-
-<p>Fragment提供了一个接口 Fragment#setRetainInstance(true), 通过设置true，就能独立于Activity的生命周期。具体原理参考官方文档。</p>
-
-<p>因此，我们就能在Fragment内部跑工作线程了~</p>
-
-<p>下面的示例代码，在Fragment内部管理了一个AsyncTask，并不受configChanges的影响。</p>
+<p><br>
+下面的示例代码，在Fragment内部管理了一个AsyncTask，并不受configChanges的影响。
+<br><br></p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -355,6 +362,12 @@
 </span><span class='line'>  }
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
+
+<h2>结论</h2>
+
+<p>原本Activity的生命周期和后台任务的同步就比较难以处理，加上configChanges就更加复杂了
+<br>
+幸运的是，使用retained Fragment能够比较容易处理这种情况</p>
 </div>
 
 
