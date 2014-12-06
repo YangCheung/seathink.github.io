@@ -4,7 +4,7 @@
   <title><![CDATA[Yang's Blog]]></title>
   <link href="http://devyang.com/atom.xml" rel="self"/>
   <link href="http://devyang.com/"/>
-  <updated>2014-12-07T00:09:23+08:00</updated>
+  <updated>2014-12-07T00:56:28+08:00</updated>
   <id>http://devyang.com/</id>
   <author>
     <name><![CDATA[Yang]]></name>
@@ -42,7 +42,7 @@
 
 <p>通常的解决方案是设置android:configChanges属性，避免activity的recreate现象。
 <br><br>
-但是Google的工程师不推荐这么使用。处理configChanges需要手动写代码设置不同的字符串、layout、drawable、dimesion等资源.
+但是<a href="http://stackoverflow.com/a/5336057/844882">Google工程师</a>不推荐这么使用。处理configChanges需要手动写代码设置不同的字符串、layout、drawable、dimesion等资源.
 <br>如果不小心处理，很容易发生一系列错误。
 <br><br>
 还有，很多开发者认为设置android:configChanges=&ldquo;orientation&#8221;这一个属性就能避免recreate，但实际上影响设备configChanges的属性不光屏幕方向，还有连接dock，切换语言等，太多了。每一个都会让当前的activity recreate. <br>因此，仅仅配置android:configChanges属性并不是一个可取的解决方案
