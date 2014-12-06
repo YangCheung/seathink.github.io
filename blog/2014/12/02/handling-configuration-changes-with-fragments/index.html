@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Yang&#8217;s Blog</title>
+  <title>用Fragment处理Configuration Changes - Yang&#8217;s Blog</title>
   <meta name="author" content="Yang">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://devyang.com">
+  <link rel="canonical" href="http://devyang.com/blog/2014/12/02/handling-configuration-changes-with-fragments">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Yang's Blog" type="application/atom+xml">
@@ -74,15 +74,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/12/02/handling-configuration-changes-with-fragments/">用Fragment处理Configuration Changes</a></h1>
+      <h1 class="entry-title">用Fragment处理Configuration Changes</h1>
     
     
       <p class="meta">
@@ -98,7 +95,7 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://stackoverflow.com/questions/3821423/background-task-progress-dialog-orientation-change-is-there-any-100-working">StackOverflow</a> 有个问的比较多的问题.</p>
+<div class="entry-content"><p><a href="http://stackoverflow.com/questions/3821423/background-task-progress-dialog-orientation-change-is-there-any-100-working">StackOverflow</a> 有个问的比较多的问题.</p>
 
 <pre><code>What is the best way to retain active objects—such as running Threads, Sockets, and AsyncTasks—across device configuration changes?
 </code></pre>
@@ -359,228 +356,87 @@
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/11/li-yong-android-gradleshou-shen-apk/">利用Android Gradle瘦身apk</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-11T16:20:45+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:20 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>前言</h1>
-
-<p>apk瘦身一般有两条线，</p>
-
-<ol>
-<li>去除无用的代码，例如引用一个比较大的lib，只使用了其中很少的功能。其他无用的代码可以想办法去掉</li>
-<li>去除无用的资源文件，可能是第三方lib中的，也有可能是开发中引入了无用的资源</li>
-</ol>
-
-
-<p><br></p>
-
-<h2>去除无用代码</h2>
-
-<p>当然是Proguard了！
-<br></p>
-
-<p><strong>gradle plug 0.14.0,  runProguard 更名为minifyEnabled</strong>
-<br>
-<br></p>
-
-<h2>去除无用资源</h2>
-
-<p><a href="http://tools.android.com/tech-docs/new-build-system">Android Gradle plug</a>从0.14.0开始，支持自动去除没有使用的资源。</p>
-
-<p><br></p>
-
-<p>不过，这个开关是默认关闭的。可以在build type使用 shrinkResources true 开启。 要注意，这个功能的使用依赖于code shrinking， 所以minifyEnabled也必须打开。</p>
-
-<p><br>
-<br></p>
-
-<blockquote><ol>
-<li><p>Support for automatic removal of unused resources</p></li>
-<li><p>Off by default for now, enable by setting shrinkResources to true in your release build types. Requires minifyEnabled as well.
-<br>
-<br></p></li>
-</ol>
-</blockquote>
-
-<p>具体配置如下</p>
-
-<p><br></p>
-
-<pre><code>android {
-    buildTypes {
-        release {
-            minifyEnabled true
-            shrinkResources true
-        }
-    }
-}﻿
-</code></pre>
-
-<h2>效果</h2>
-
-<p>  以我正在开发的一个app为例
-<br></p>
-
-<ul>
-<li><p>使用前2.02MB</p></li>
-<li><p>使用后1.90MB</p></li>
-</ul>
-
-
-<p><br></p>
-
-<p>效果明显！</p>
-
-<p><br>
-<br></p>
-</div>
-  
   
 
+<span class="byline author vcard">Posted by <span class="fn">Yang</span></span>
 
-    </article>
-  
-  
-    <article>
       
-  <header>
+
+
+
+
+<time class='entry-date' datetime='2014-12-02T00:11:38+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:11 am</span></time>
+      
+
+
+    </p>
+    <p class="meta">
+      
+原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" id="">Creative Commons BY-NC-ND 3.0</a>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/03/android-gradle-duo-qu-dao-da-bao-pei-zhi/">Android Gradle 多渠道打包配置</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-03T19:56:56+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>7:56 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>需求</h2>
-
-<p>国内Android app发布一般会有多个渠道，为了跟踪发展情况，通常会为每一个渠道定制一个特别的apk。</p>
-
-<p>一般友盟之类第三方统计的渠道ID定义如下，以wandoujia为例</p>
-
-<pre><code>      &lt;meta-data android:name="UMENG_CHANNEL" android:value="wandoujia" /&gt;
-</code></pre>
-
-<p>如果不使用第三方统计，自己也可以在AndroidManifest.xml中定义类似meta-data</p>
-
-<p>如果每个渠道都手工修改，打包，10几个渠道下来😂</p>
-
-<p>咱还是自动化来得方便</p>
-
-<h2>解决方案</h2>
-
-<p>Gradle Android Plugin 0.10 新增了<a href="http://tools.android.com/tech-docs/new-build-system/user-guide/manifest-merger">Manifest Merger</a></p>
-
-<blockquote><p>For custom placeholders replacements, use the following DSL to configure the placeholders values :</p></blockquote>
-
-<pre><code>android {
-
-    defaultConfig { 
-
-        manifestPlaceholders = [ activityLabel:"defaultName"] 
-
-    } 
-
-    productFlavors {
-
-        free { 
-        } 
-
-        pro { manifestPlaceholders = [ activityLabel:"proName" ] 
-
-        } 
-    }
-} 
-</code></pre>
-
-<p>Manifest Merger 可以替换Manifest中对应key的值</p>
-
-<p>所以，可以利用Product flavor + manifestPlaceholder 来替换对应渠道的key</p>
-
-<p>假如我们有wandoujia， Google Play， 两个渠道，可以这么写</p>
-
-<p>AndroidManifest.xml</p>
-
-<pre><code>        &lt;meta-data android:name="UMENG_CHANNEL" android:value="$[CHANNEL_KET]" /&gt;
-</code></pre>
-
-<p>build.gradle</p>
-
-<pre><code>        productFlavors {
-            wandoujia{
-                manifestPlaceholders = [ UMENG_CHANNEL_VALUE:name]
-            }
-            google_play{
-                manifestPlaceholders = [ UMENG_CHANNEL_VALUE:name]
-            }
-        }
-</code></pre>
-
-<p>ok, 搞定，几行代码自动生成对应渠道的apk。 其实是将Manifest中的
-UMENG_CHANNEL_VALUE替换成了flavorbuild的name
-<br/></p>
-
-<p>可以看到每个flavor里面的代码一样，比较啰嗦，还能在简化下，</p>
-
-<pre><code>        productFlavors {
-            wandoujia{
-            }
-            google_play{
-            }
-        }
-
-        productFlavors.all { flavor -&gt;
-            flavor.manifestPlaceholders = [ UMENG_CHANNEL_VALUE:name ]
-        }
-</code></pre>
-
-<p>一个循环搞定~</p>
+      <div class="sharing">
+  
+  
+  
+  
+     <style>
+.flash-video{display:none;}
+</style>
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_tsina">新浪微博</a>
+<a class="jiathis_button_t163">网易微博</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_renren">人人网</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a href="http://www.jiathis.com/share?uid=1981564" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
 </div>
-  
-  
+<script type="text/javascript" >
+var jiathis_config={
+data_track_clickback:true,
+sm:"t163,tsina,tqq,renren,douban",
+summary:"",
+hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v2.jiathis.com/code_mini/jia.js?uid=1981564" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br />
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1981564" async=""></script>
+<!-- UY END -->
 
 
-    </article>
+
+
+
+
   
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/11/11/li-yong-android-gradleshou-shen-apk/" title="Previous Post: 利用Android Gradle瘦身apk">&laquo; 利用Android Gradle瘦身apk</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -651,6 +507,7 @@ src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fa
 
   
 </aside>
+
 
     </div>
   </div>
